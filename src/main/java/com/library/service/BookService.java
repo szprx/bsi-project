@@ -1,6 +1,5 @@
 package com.library.service;
 
-import com.library.dto.BookDto;
 import com.library.entity.BookEntity;
 import com.library.repository.BookRepository;
 import lombok.AllArgsConstructor;
@@ -14,25 +13,25 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public BookDto saveBook(BookDto book) {
-        return BookDto.of(bookRepository.save(BookEntity.of(book)));
+    public BookEntity saveBook(BookEntity book) {
+        return bookRepository.save(book);
     }
 
-    public BookDto getBook(Long id) {
-        return BookDto.of(bookRepository.findById(id)
-                .orElseThrow());
+    public BookEntity getBook(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow();
     }
 
-    public List<BookDto> getBooks() {
-        return BookDto.of(bookRepository.findAll());
+    public List<BookEntity> getBooks() {
+        return bookRepository.findAll();
     }
 
-    public BookDto updateBook(Long id, BookDto book) {
-        return BookDto.of(bookRepository.findById(id)
+    public BookEntity updateBook(Long id, BookEntity book) {
+        return bookRepository.findById(id)
                 .map(oldBook -> {
                     BookEntity updatedBook = oldBook.updateWith(book);
                     return bookRepository.save(updatedBook);
-                }).orElseThrow());
+                }).orElseThrow();
     }
 
     public void deleteBook(Long id) {

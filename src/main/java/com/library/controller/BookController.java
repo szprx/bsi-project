@@ -1,8 +1,9 @@
 package com.library.controller;
 
-import com.library.dto.BookDto;
+import com.library.entity.BookEntity;
 import com.library.service.BookService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,27 +17,28 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
 
     @GetMapping("/all")
-    public List<BookDto> getBooks() {
+    public List<BookEntity> getBooks() {
         return bookService.getBooks();
     }
 
     @GetMapping("/{id}")
-    public BookDto getBook(@PathVariable long id) {
+    public BookEntity getBook(@PathVariable long id) {
         return bookService.getBook(id);
     }
 
     @PostMapping("/add")
-    public BookDto saveBook(@RequestBody BookDto book) {
+    public BookEntity saveBook(@RequestBody BookEntity book) {
         return bookService.saveBook(book);
     }
 
     @PutMapping("/update/{id}")
-    public BookDto updateBook(@PathVariable long id, @RequestBody BookDto book) {
+    public BookEntity updateBook(@PathVariable long id, @RequestBody BookEntity book) {
         return bookService.updateBook(id, book);
     }
 

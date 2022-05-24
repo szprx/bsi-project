@@ -1,6 +1,5 @@
 package com.library.entity;
 
-import com.library.dto.BookDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +22,7 @@ import javax.persistence.Table;
 @Builder
 public class BookEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title")
@@ -35,16 +34,8 @@ public class BookEntity {
     @Column(name = "releaseYear")
     private Long releaseYear;
 
-    public static BookEntity of(BookDto book) {
-        return BookEntity.builder()
-                .title(book.getTitle())
-                .author(book.getAuthor())
-                .description(book.getDescription())
-                .releaseYear(book.getReleaseYear())
-                .build();
-    }
 
-    public BookEntity updateWith(BookDto book) {
+    public BookEntity updateWith(BookEntity book) {
         return BookEntity.builder()
                 .id(this.id)
                 .title(book.getTitle())
