@@ -44,4 +44,11 @@ public class BookEntity {
                 .releaseYear(book.getReleaseYear())
                 .build();
     }
+
+    public boolean dataHasErrors() {
+        return this.author.equals("") ||
+                this.title.equals("") ||
+                this.description.equals("") ||
+                this.releaseYear < 0;
+    }
 }

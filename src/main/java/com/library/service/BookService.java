@@ -14,6 +14,9 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public BookEntity saveBook(BookEntity book) {
+        if (book.dataHasErrors()) {
+            return null;
+        }
         return bookRepository.save(book);
     }
 
@@ -27,6 +30,9 @@ public class BookService {
     }
 
     public BookEntity updateBook(Long id, BookEntity book) {
+        if (book.dataHasErrors()) {
+            return null;
+        }
         return bookRepository.findById(id)
                 .map(oldBook -> {
                     BookEntity updatedBook = oldBook.updateWith(book);
