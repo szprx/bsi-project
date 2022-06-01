@@ -29,7 +29,7 @@ public class BookEntity {
     private String title;
     @Column(name = "author")
     private String author;
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
     @Column(name = "releaseYear")
     private Long releaseYear;
