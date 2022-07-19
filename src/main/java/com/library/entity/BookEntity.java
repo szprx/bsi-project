@@ -45,6 +45,15 @@ public class BookEntity {
                 .build();
     }
 
+    public static BookEntity of(String title, String author, String description, Long releaseYear) {
+        return BookEntity.builder()
+                .title(title)
+                .author(author)
+                .description(description)
+                .releaseYear(releaseYear)
+                .build();
+    }
+
     public boolean dataHasErrors() {
         return this.author.equals("") ||
                 this.title.equals("") ||
